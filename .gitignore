@@ -1,0 +1,12 @@
+# Ignore Maven output
+/target/
+*.class
+*.log
+
+# Ignore Eclipse files
+/.classpath
+/.project
+/.settings/
+
+# Ignore Reports
+/cucumber-reports.html
