@@ -6,6 +6,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import utils.ConfigReader;
 import utils.ExtentReportManager;
+import utils.Utilities;
 
 import java.util.Properties;
 
@@ -33,6 +34,8 @@ public class Hooks extends BaseTest {
     @After
     public void tearDown(Scenario scenario) {
         if (scenario.isFailed()) {
+        	byte[] screenshot = Utilities.takeScreenshot();
+            scenario.attach(screenshot, "image/png", scenario.getName());
             test.fail("Test Failed");
         } else {
             test.pass("Test Passed");
