@@ -8,6 +8,7 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = {"stepdefinitions", "hooks"},
+        tags = "@Smoke or @Regression",
         plugin = {"pretty", "html:target/cucumber-reports.html"},
         monochrome = true
 )
