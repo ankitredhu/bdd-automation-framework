@@ -12,7 +12,7 @@ public class LoginSteps extends BaseTest {
     @Given("I am on the home page")
     public void i_am_on_the_home_page() {
         // Home page is already loaded by initializeBrowser() from Hooks
-        loginPage = new LoginPage(driver); // initialize LoginPage object
+        loginPage = new LoginPage(getDriver()); // initialize LoginPage object
     }
 
     @When("I click on SignupLogin link")

@@ -1,5 +1,7 @@
 package hooks;
 
+import java.util.Properties;
+
 import base.BaseTest;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -7,8 +9,6 @@ import io.cucumber.java.Scenario;
 import utils.ConfigReader;
 import utils.ExtentReportManager;
 import utils.Utilities;
-
-import java.util.Properties;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -21,9 +21,8 @@ public class Hooks extends BaseTest {
 
     @Before
     public void setUp(Scenario scenario) {
-        // Browser initialization
-    	prop = ConfigReader.initializeProperties();
-    	 String browser = prop.getProperty("browser");
+        prop = ConfigReader.initializeProperties();
+        String browser = prop.getProperty("browser");
         initializeBrowser(browser);
 
         // Start Extent report
@@ -34,7 +33,7 @@ public class Hooks extends BaseTest {
     @After
     public void tearDown(Scenario scenario) {
         if (scenario.isFailed()) {
-        	byte[] screenshot = Utilities.takeScreenshot();
+            byte[] screenshot = Utilities.takeScreenshot(getDriver());
             scenario.attach(screenshot, "image/png", scenario.getName());
             test.fail("Test Failed");
         } else {
