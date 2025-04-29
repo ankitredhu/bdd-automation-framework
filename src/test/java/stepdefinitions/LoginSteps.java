@@ -4,6 +4,7 @@ import base.BaseTest;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
 import pages.LoginPage;
+import utils.ExcelReader;
 
 public class LoginSteps extends BaseTest {
 
@@ -20,10 +21,11 @@ public class LoginSteps extends BaseTest {
         loginPage.clickSignupLoginLink();
     }
 
-    @When("I enter valid email {string} and password {string}")
-    public void i_enter_valid_email_and_password(String email, String password) {
-        loginPage.enterLoginEmail(email);
-        loginPage.enterLoginPassword(password);
+    @When("I enter valid email and password from excel {int}")
+    public void i_enter_valid_email_and_password_from_excel(Integer rowIndex) {
+    	String[][] data = ExcelReader.readExcelData("Sheet1");
+        loginPage.enterLoginEmail(data[rowIndex][0]);
+        loginPage.enterLoginPassword(data[rowIndex][1]);
     }
 
     @When("I click on login button")

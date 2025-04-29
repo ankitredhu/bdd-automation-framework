@@ -54,17 +54,18 @@
 			<artifactId>extentreports</artifactId>
 			<version>5.0.9</version>
 		</dependency>
-		<dependency>
-    <groupId>org.testng</groupId>
-    <artifactId>testng</artifactId>
-    <version>7.8.0</version> <!-- or latest stable -->
-    <scope>test</scope>
-</dependency>
+		<!-- Apache POI - Core for XLSX and XLS -->
 <dependency>
-    <groupId>io.cucumber</groupId>
-    <artifactId>cucumber-testng</artifactId>
-    <version>7.14.0</version> <!-- or whatever version matches your other cucumber dependencies -->
-    <scope>test</scope>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi</artifactId>
+    <version>5.2.5</version>
+</dependency>
+
+<!-- Apache POI - OOXML support (for .xlsx files) -->
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-ooxml</artifactId>
+    <version>5.2.5</version>
 </dependency>
 
 
