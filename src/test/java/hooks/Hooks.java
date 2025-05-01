@@ -5,7 +5,9 @@ import base.BaseTest;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import pages.LoginPage;
 import utils.ConfigReader;
+import utils.ExcelReader;
 import utils.ExtentReportManager;
 import utils.LoggerUtility;
 import utils.RetryScenario;
@@ -21,7 +23,7 @@ public class Hooks extends BaseTest {
     RetryScenario retryScenario = new RetryScenario();
     org.apache.logging.log4j.Logger log = LoggerUtility.getLogger(Hooks.class);
 
-    @Before
+    @Before(order = 1)
     public void setUp(Scenario scenario) {
     	
         
@@ -35,6 +37,22 @@ public class Hooks extends BaseTest {
         extent = ExtentReportManager.getInstance();
         test = extent.createTest(scenario.getName());
     }
+    
+    @Before(value = "@LoggedIn", order = 2)
+    public void loginBeforeScenario() {
+        log.info("Performing login as scenario is tagged with @LoggedIn");
+
+        LoginPage loginPage = new LoginPage(getDriver());
+        String[][] data = ExcelReader.readExcelData("Sheet1");
+
+        // You can use first row (0 index) or parameterize later
+        loginPage.clickSignupLoginLink();
+        loginPage.enterLoginEmail(data[0][0]);
+        loginPage.enterLoginPassword(data[0][1]);
+
+        log.info("Login completed");
+    }
+
 
     @After
     public void tearDown(Scenario scenario) {

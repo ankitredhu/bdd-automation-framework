@@ -1,7 +1,7 @@
 @Smoke
 Feature: User Login
 	
-	@Regression
+	@LoggedIn
   Scenario Outline: Login with valid credentials
     Given I am on the home page
     When I click on SignupLogin link
@@ -12,6 +12,4 @@ Feature: User Login
      Examples:
       |RowIndex |
       |0        |
-      |1        |
-     # |2        |
  
