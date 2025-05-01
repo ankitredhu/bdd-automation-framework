@@ -1,80 +1,70 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-
 import utils.ActionHelper;
+import utils.LoggerUtility;
+import org.apache.logging.log4j.Logger;
 
-public class ProductPage extends ActionHelper {
-	
-	private WebDriver driver;
-	
-	@FindBy(xpath = "//a[@href='/products']")
-	private WebElement productsLink;
+public class ProductPage {
 
-    @FindBy(css = "input#search_product")
-    private WebElement searchInput;
-
-    @FindBy(css = "#submit_search")
-    private WebElement searchButton;
-
-    @FindBy(xpath = "(//a[contains(text(),'View Product')])[1]")
-    private WebElement firstProductAddToCartButton;
-    
-    @FindBy(xpath = "//button[normalize-space()='Add to cart']")
-    private WebElement nextPageAddToCartButton;
-    
-    @FindBy(css = "div[id='cartModal'] p:nth-child(1)")
-    private WebElement procuctAddedToCartMessage;
-
-    @FindBy(css = ".modal-content .btn-success")
-    private WebElement continueShoppingButton;
-
-    @FindBy(css = "a[href='/view_cart']")
-    private WebElement cartLink;
-
-    @FindBy(css = ".cart_description h4 a")
-    private WebElement cartProductName;
+    private WebDriver driver;
+    private ActionHelper action;
+    private Logger log = LoggerUtility.getLogger(ProductPage.class);
 
     public ProductPage(WebDriver driver) {
-    	super(driver);
         this.driver = driver;
-        PageFactory.initElements(driver, this);
+        this.action = new ActionHelper(driver);
+        log.info("ProductPage initialized");
     }
-    
+
+    // Locators
+    private final By productsLink = By.xpath("//a[@href='/products']");
+    private final By searchInput = By.cssSelector("input#search_product");
+    private final By searchButton = By.cssSelector("#submit_search");
+    private final By firstProductViewButton = By.xpath("(//a[contains(text(),'View Product')])[1]");
+    private final By nextPageAddToCartButton = By.xpath("//button[normalize-space()='Add to cart']");
+    private final By productAddedToCartMessage = By.cssSelector("div[id='cartModal'] p:nth-child(1)");
+    private final By continueShoppingButton = By.cssSelector(".modal-content .btn-success");
+    private final By cartLink = By.cssSelector("a[href='/view_cart']");
+    private final By cartProductName = By.cssSelector(".cart_description h4 a");
+
+    // Actions
     public void clickProductsLink() {
-    	click(productsLink);
+        log.info("Clicking on 'Products' link");
+        action.click(productsLink);
     }
 
     public void searchProduct(String keyword) {
-        type(searchInput, keyword);
-        click(searchButton);
+        log.info("Searching product: " + keyword);
+        action.type(searchInput, keyword);
+        action.click(searchButton);
     }
 
     public void addFirstProductToCart() {
-        click(firstProductAddToCartButton);
-        click(nextPageAddToCartButton);
-        
+        log.info("Adding first product to cart");
+        action.click(firstProductViewButton);
+        action.click(nextPageAddToCartButton);
     }
-    
-    public String productAddedMessage() {
-    	isElementVisible(procuctAddedToCartMessage);
-    	return procuctAddedToCartMessage.getText();
+
+    public String getProductAddedMessage() {
+        log.info("Getting product added message");
+        action.waitForElementToBeVisible(productAddedToCartMessage);
+        return action.getText(productAddedToCartMessage);
     }
-    
-    public void clickContinueButton() {
-    	click(continueShoppingButton);
+
+    public void clickContinueShoppingButton() {
+        log.info("Clicking 'Continue Shopping' button");
+        action.click(continueShoppingButton);
     }
-    
-    
 
     public void goToCart() {
-        click(cartLink);
+        log.info("Navigating to cart");
+        action.click(cartLink);
     }
 
     public String getCartProductName() {
-        return getText(cartProductName);
+        log.info("Getting product name from cart");
+        return action.getText(cartProductName);
     }
 }

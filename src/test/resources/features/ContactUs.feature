@@ -1,9 +1,9 @@
-@LoggedIn
+@Smoke
 Feature: Contact Us Page Functionality
 As a logged-in user
 I want to submit a contact form
 So that I can reach out to the support team
-
+@LoggedIn
 Scenario Outline: Submit Contact Us form with valid details
 Given User is logged in with email and password from excel <RowIndex>
 When I click on Contact Us link
