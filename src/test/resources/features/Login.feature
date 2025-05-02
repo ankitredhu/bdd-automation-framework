@@ -1,4 +1,4 @@
-@Smoke
+
 Feature: User Login
 	
 	@LoggedIn

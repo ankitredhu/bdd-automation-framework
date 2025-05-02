@@ -1,4 +1,4 @@
-@Smoke
+
 Feature: Product Search and Add to Cart Functionality As a logged-in user I want to search for a product and add it to the cart So that I can purchase it later
 
 @LoggedIn 

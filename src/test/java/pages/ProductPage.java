@@ -28,6 +28,7 @@ public class ProductPage {
     private final By continueShoppingButton = By.cssSelector(".modal-content .btn-success");
     private final By cartLink = By.cssSelector("a[href='/view_cart']");
     private final By cartProductName = By.cssSelector(".cart_description h4 a");
+    private final By deleteProductButton = By.cssSelector(".cart_quantity_delete");
 
     // Actions
     public void clickProductsLink() {
@@ -66,5 +67,16 @@ public class ProductPage {
     public String getCartProductName() {
         log.info("Getting product name from cart");
         return action.getText(cartProductName);
+    }
+    
+    public void removeProductFromCart() {
+        log.info("Removing product from cart");
+        action.click(deleteProductButton);
+    }
+
+    public boolean isCartEmpty() {
+        log.info("Checking if cart is empty");
+        By emptyMessage = By.xpath("//*[contains(text(),'Cart is empty') or contains(text(),'Your cart is empty')]");
+        return action.isElementVisible(emptyMessage);
     }
 }
