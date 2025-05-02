@@ -9,7 +9,7 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = {"stepdefinitions", "hooks"},
-        tags = "@Smoke",
+        tags = "@Smoke1",
         plugin = {"pretty",
         		"html:target/cucumber-reports.html",
         		"rerun:target/failedrerun.txt" 

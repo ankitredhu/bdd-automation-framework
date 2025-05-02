@@ -49,7 +49,7 @@ public class Hooks extends BaseTest {
         loginPage.clickSignupLoginLink();
         loginPage.enterLoginEmail(data[0][0]);
         loginPage.enterLoginPassword(data[0][1]);
-
+        loginPage.clickLoginButton();
         log.info("Login completed");
     }
 

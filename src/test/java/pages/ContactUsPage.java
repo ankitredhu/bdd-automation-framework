@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class ContactUsPage {
     private WebDriver driver;
+    
 
     // Locators for Contact Us page elements
     @FindBy(css = "input[name='name']")
