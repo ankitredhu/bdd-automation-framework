@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ActionHelper {
@@ -27,9 +28,20 @@ public class ActionHelper {
         element.clear();
         element.sendKeys(text);
     }
+    
+    public void clear(By locator) {
+    	driver.findElement(locator).clear();
+    }
 
     public String getText(By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).getText();
+    }
+    
+    public  void selectByVisibleText(By locator, String value) {
+    	waitForPresenceOfElementLocated(locator);
+        WebElement dropdownElement = driver.findElement(locator);
+        Select dropdown = new Select(dropdownElement);
+        dropdown.selectByVisibleText(value);
     }
 
     public boolean isElementVisible(By locator) {
@@ -47,4 +59,10 @@ public class ActionHelper {
     public void waitForElementToBeVisible(By locator) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
+    
+    public void waitForPresenceOfElementLocated(By locator) {
+    	wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+    }
+    
+    
 }

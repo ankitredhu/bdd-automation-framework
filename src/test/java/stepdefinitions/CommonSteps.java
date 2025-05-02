@@ -15,5 +15,10 @@ public class CommonSteps extends BaseTest {
 		//Handing the login logic in Hooks, this is only for better readability in feature file
 
 	}
+	
+	@Given("I am on the homepage")
+	public void i_am_on_the_homepage() {
+	    
+	}
 
 }
