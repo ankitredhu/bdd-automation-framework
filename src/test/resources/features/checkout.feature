@@ -1,4 +1,4 @@
-@Smoke1
+@Smoke
 Feature: Checkout Process
   As a user
   I want to proceed to checkout

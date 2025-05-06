@@ -1,4 +1,4 @@
-
+@Smoke
 Feature: Contact Us Page Functionality
 As a logged-in user
 I want to submit a contact form

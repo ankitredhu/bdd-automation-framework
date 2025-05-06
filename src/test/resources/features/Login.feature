@@ -1,7 +1,6 @@
-
+@Smoke
 Feature: User Login
 	
-	@LoggedIn
   Scenario Outline: Login with valid credentials
     Given I am on the home page
     When I click on SignupLogin link
