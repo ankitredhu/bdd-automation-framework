@@ -26,7 +26,9 @@ public class LoginPage {
     private final By loginPasswordInput = By.xpath("//input[@data-qa='login-password']");
     private final By loginButton = By.xpath("//button[@data-qa='login-button']");
     private final By loggedInUser = By.xpath("//a[contains(text(),'Logged in as')]");
-
+    private final By logoutButton = By.xpath("//a[normalize-space()='Logout']");
+    private final By loginAccountLabel = By.xpath("//h2[normalize-space()='Login to your account']");
+    
     // Actions
     public void clickSignupLoginLink() {
         log.info("Clicking Signup/Login link");
@@ -51,5 +53,17 @@ public class LoginPage {
     public boolean isUserLoggedIn() {
         log.info("Checking if user is logged in...");
         return action.isElementVisible(loggedInUser);
+    }
+    
+    //Log out functionality
+    
+    public void clickLogoutButton() {
+    	log.info("Clicking on log out button");
+    	action.click(logoutButton);
+    }
+    
+    public boolean isUserLoggedOut() {
+    	log.info("Checking if user is logged out...");
+    	return action.isElementVisible(loginAccountLabel);
     }
 }
