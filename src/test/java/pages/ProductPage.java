@@ -19,7 +19,6 @@ public class ProductPage {
     }
 
     // Locators
-    private final By productsLink = By.xpath("//a[@href='/products']");
     private final By searchInput = By.cssSelector("input#search_product");
     private final By searchButton = By.cssSelector("#submit_search");
     private final By firstProductViewButton = By.xpath("(//a[contains(text(),'View Product')])[1]");
@@ -31,10 +30,6 @@ public class ProductPage {
     private final By deleteProductButton = By.cssSelector(".cart_quantity_delete");
 
     // Actions
-    public void clickProductsLink() {
-        log.info("Clicking on 'Products' link");
-        action.click(productsLink);
-    }
 
     public void searchProduct(String keyword) {
         log.info("Searching product: " + keyword);

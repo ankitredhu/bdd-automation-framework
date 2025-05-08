@@ -3,22 +3,26 @@ package stepdefinitions;
 import base.BaseTest;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
+
+import pages.HeaderPage;
 import pages.LoginPage;
 import utils.ExcelReader;
 
 public class LoginSteps extends BaseTest {
 
     LoginPage loginPage;
+    HeaderPage headerpage;
 
     @Given("I am on the home page")
     public void i_am_on_the_home_page() {
         // Home page is already loaded by initializeBrowser() from Hooks
         loginPage = new LoginPage(getDriver()); // initialize LoginPage object
+        headerpage = new HeaderPage(getDriver());
     }
 
     @When("I click on SignupLogin link")
     public void i_click_on_signup_login_link() {
-        loginPage.clickSignupLoginLink();
+    	headerpage.clickSignupLoginLink();
     }
 
     @When("I enter valid email and password from excel {int}")

@@ -1,4 +1,4 @@
-@Smoke1
+@Smoke
 Feature: Navigation to Test Cases Page
 	
   Scenario: Verify user can navigate to the Test Cases page

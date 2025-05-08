@@ -32,8 +32,6 @@ public class ContactUsPage {
     @FindBy(css = ".status.alert.alert-success")
     private WebElement successMessage;
     
-    @FindBy(xpath = "//a[normalize-space()='Contact us']")
-    private WebElement contactUsLink;
 
     // Constructor
     public ContactUsPage(WebDriver driver) {
@@ -41,9 +39,6 @@ public class ContactUsPage {
         PageFactory.initElements(driver, this);
     }
     
-    public void clickContactUs() {
-    	contactUsLink.click();
-    }
 
     // Methods to interact with the page
     public void fillContactForm(String name, String email, String subject, String message) {

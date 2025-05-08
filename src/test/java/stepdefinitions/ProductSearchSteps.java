@@ -5,16 +5,19 @@ import static org.junit.Assert.assertEquals;
 import base.BaseTest;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import pages.HeaderPage;
 import pages.ProductPage;
 
 public class ProductSearchSteps extends BaseTest {
 
     private ProductPage productPage;
+    private HeaderPage headerPage;
 
     @When("I click on Products link")
     public void i_click_on_products_link() {
         productPage = new ProductPage(getDriver());
-        productPage.clickProductsLink();
+        headerPage = new HeaderPage(getDriver());
+        headerPage.clickProductsLink();
     }
 
     @When("I search for a product with keyword {string}")

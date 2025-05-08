@@ -9,16 +9,19 @@ import org.openqa.selenium.WebDriver;
 
 import base.BaseTest;
 import pages.ContactUsPage;
+import pages.HeaderPage;
 
 public class ContactUsSteps extends BaseTest {
     private WebDriver driver;
     private ContactUsPage contactUsPage;
+    private HeaderPage headerPage;
 
     @When("I click on Contact Us link")
     public void i_click_on_contact_us_link() {
         // Write code here that turns the phrase above into concrete actions
     	contactUsPage = new ContactUsPage(getDriver());
-    	contactUsPage.clickContactUs();
+    	headerPage = new HeaderPage(getDriver());
+    	headerPage.clickContactUs();
     }
 
     @And("I fill in the contact form with valid details")

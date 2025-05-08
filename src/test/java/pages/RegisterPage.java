@@ -14,7 +14,6 @@ public class RegisterPage extends ActionHelper {
     }
 
     // Locators
-    private By signupLoginLink = By.xpath("//a[contains(text(),'Signup / Login')]");
     private By nameInput = By.name("name");
     private By emailInput = By.xpath("//input[@data-qa='signup-email']");
     private By signupButton = By.xpath("//button[@data-qa='signup-button']");
@@ -35,9 +34,6 @@ public class RegisterPage extends ActionHelper {
     private By emailAlreadyExistsError = By.xpath("//*[contains(text(),'Email Address already exist!')]");
 
     // Actions
-    public void clickSignupLoginLink() {
-        click(signupLoginLink);
-    }
 
     public void enterNameAndEmail(String name, String email) {
         type(nameInput, name);

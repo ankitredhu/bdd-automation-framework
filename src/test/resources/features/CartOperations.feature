@@ -1,4 +1,4 @@
-@Smoke 
+@Smoke
 Feature: Cart Operations
   As a user
   I want to manage my shopping cart

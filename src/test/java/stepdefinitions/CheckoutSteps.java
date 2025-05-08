@@ -6,18 +6,21 @@ import base.BaseTest;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.CheckoutPage;
+import pages.HeaderPage;
 import pages.PaymentPage;
 
 public class CheckoutSteps extends BaseTest {
 
     private CheckoutPage checkoutPage;
     private PaymentPage paymentPage;
+    private HeaderPage headerPage;
 
     @When("I click on the Cart link")
     public void i_click_on_the_cart_link() {
         checkoutPage = new CheckoutPage(getDriver());
         paymentPage = new PaymentPage(getDriver());
-        checkoutPage.clickCartLink();
+        headerPage = new HeaderPage(getDriver());
+        headerPage.clickCartLink();
     }
 
     @When("I click on Proceed to Checkout")

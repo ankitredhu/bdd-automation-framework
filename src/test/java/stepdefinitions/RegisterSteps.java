@@ -6,19 +6,20 @@ import static org.junit.Assume.assumeTrue;
 import base.BaseTest;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import pages.HeaderPage;
 import pages.LoginPage;
 import pages.RegisterPage;
 import utils.ExcelReader;
 
 public class RegisterSteps extends BaseTest {
 
-    private LoginPage loginPage;
     private RegisterPage registerPage;
+    private HeaderPage headerPage;
 
     @When("I click on the SignupLogin link")
     public void i_click_on_the_signup_login_link() {
-        loginPage = new LoginPage(getDriver());
-        loginPage.clickSignupLoginLink();
+    	headerPage = new HeaderPage(getDriver());
+        headerPage.clickSignupLoginLink();
     }
 
     @When("I register a new user with data from sheet {string} and {int}")

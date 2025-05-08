@@ -24,11 +24,7 @@ public class CheckoutPage {
     private final By reviewOrderMessage = By.xpath("//h2[contains(text(),'Review Your Order')]");
     private final By commentInput = By.name("message");
     private final By placeOrderButton = By.xpath("//a[contains(text(),'Place Order')]");
-    private final By cartLinkButton = By.xpath("//a[normalize-space()='Cart']//i[@class='fa fa-shopping-cart']");
-    
-    public void clickCartLink() {
-    	action.click(cartLinkButton);
-    }
+
     public void clickProceedToCheckout() {
         log.info("Clicking 'Proceed To Checkout' button");
         action.click(proceedToCheckoutButton);

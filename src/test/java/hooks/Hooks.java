@@ -5,6 +5,7 @@ import base.BaseTest;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import pages.HeaderPage;
 import pages.LoginPage;
 import utils.ConfigReader;
 import utils.ExcelReader;
@@ -43,10 +44,11 @@ public class Hooks extends BaseTest {
         log.info("Performing login as scenario is tagged with @LoggedIn");
 
         LoginPage loginPage = new LoginPage(getDriver());
+        HeaderPage headerPage = new HeaderPage(getDriver());
         String[][] data = ExcelReader.readExcelData("Sheet1");
 
         // You can use first row (0 index) or parameterize later
-        loginPage.clickSignupLoginLink();
+        headerPage.clickSignupLoginLink();
         loginPage.enterLoginEmail(data[0][0]);
         loginPage.enterLoginPassword(data[0][1]);
         loginPage.clickLoginButton();
