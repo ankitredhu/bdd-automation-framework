@@ -1,4 +1,4 @@
-@Smoke1
+@Smoke
 Feature: User Login
   As a user, I want to log in and out of the application so that I can access my account securely.
 	
