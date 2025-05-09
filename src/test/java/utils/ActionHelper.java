@@ -1,6 +1,7 @@
 package utils;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -35,6 +36,10 @@ public class ActionHelper {
 
     public String getText(By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).getText();
+    }
+    
+    public List<WebElement> findElements(By locator){
+    	return driver.findElements(locator);
     }
     
     public  void selectByVisibleText(By locator, String value) {

@@ -23,6 +23,7 @@ public class HeaderPage {
      private final By logoutButton = By.xpath("//a[normalize-space()='Logout']");
      private final By apiTestingButton = By.xpath("//a[normalize-space()='API Testing']");
      private final By videoTutorials = By.xpath("//a[normalize-space()='Video Tutorials']");
+     private final By homeLink = By.xpath("//a[normalize-space()='Home']");
      
      public HeaderPage(WebDriver driver) {
     	 this.driver = driver;
@@ -75,5 +76,11 @@ public class HeaderPage {
     	 log.info("Clicking on Video Tutorials link");
       	action.click(videoTutorials);
      }
+
+	public void goToHome() {
+		 log.info("Clicking on Home link");
+	      	action.click(homeLink);
+		
+	}
 
 }

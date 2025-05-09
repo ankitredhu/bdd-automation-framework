@@ -2,17 +2,23 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
 import utils.ActionHelper;
 import utils.LoggerUtility;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.logging.log4j.Logger;
 
-public class ProductPage {
+public class ProductBrowsingPage {
 
     private WebDriver driver;
     private ActionHelper action;
-    private Logger log = LoggerUtility.getLogger(ProductPage.class);
+    private Logger log = LoggerUtility.getLogger(ProductBrowsingPage.class);
 
-    public ProductPage(WebDriver driver) {
+    public ProductBrowsingPage(WebDriver driver) {
         this.driver = driver;
         this.action = new ActionHelper(driver);
         log.info("ProductPage initialized");
@@ -28,6 +34,18 @@ public class ProductPage {
     private final By cartLink = By.cssSelector("a[href='/view_cart']");
     private final By cartProductName = By.cssSelector(".cart_description h4 a");
     private final By deleteProductButton = By.cssSelector(".cart_quantity_delete");
+    private final By allProductsHeading = By.xpath("//h2[text()='All Products']");
+    private final By allProductsName = By.tagName("p");
+    private final By productsList = By.cssSelector(".features_items");
+    private final By productDetailsPage = By.xpath("//div[@class='product-details']");
+    
+    // Product detail elements
+    private final By productName = By.xpath("//div[@class='product-information']/h2");
+    private final By productCategory = By.xpath("//div[@class='product-information']//p[contains(text(),'Category')]");
+    private final By productPrice = By.xpath("//span[contains(text(),'Rs.')]");
+    private final By productAvailability = By.xpath("//b[normalize-space()='Availability:']/parent::p");
+    private final By productCondition = By.xpath("//b[normalize-space()='Condition:']/parent::p");
+    private final By productBrand = By.xpath("//b[normalize-space()='Brand:']/parent::p");
 
     // Actions
 
@@ -74,4 +92,45 @@ public class ProductPage {
         By emptyMessage = By.xpath("//*[contains(text(),'Cart is empty') or contains(text(),'Your cart is empty')]");
         return action.isElementVisible(emptyMessage);
     }
+    
+    public boolean isOnAllProductsPage() {
+        log.info("Verifying All Products page");
+        return action.isElementVisible(allProductsHeading);
+    }
+    
+    
+    
+    public void clickFirstProductView() {
+        log.info("Clicking 'View Product' on first product");
+        action.click(firstProductViewButton);
+    }
+    
+    public boolean areProductDetailsVisible() {
+        log.info("Verifying product details on detail page");
+        return action.isElementVisible(productName)
+                && action.isElementVisible(productCategory)
+                && action.isElementVisible(productPrice)
+                && action.isElementVisible(productAvailability)
+                && action.isElementVisible(productCondition)
+                && action.isElementVisible(productBrand);
+    }
+    
+//    public void listOfProducts() {
+//    	log.info("Verifying products on the page..");
+//    	List<WebElement> productsNameElements = action.findElements(allProductsName);
+//    	log.info(productsNameElements.size()+" products listed");
+//    	
+//    }
+    
+    public boolean isProductListVisible() {
+        log.info("Checking if product list is visible");
+        return action.isElementVisible(productsList);
+    }
+    
+    public boolean isProductDetailsPageVisible() {
+    	log.info("Checking id product details page visible");
+    	return action.isElementVisible(productDetailsPage);
+    }
+    
+    
 }

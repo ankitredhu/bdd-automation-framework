@@ -6,16 +6,16 @@ import base.BaseTest;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.HeaderPage;
-import pages.ProductPage;
+import pages.ProductBrowsingPage;
 
 public class ProductSearchSteps extends BaseTest {
 
-    private ProductPage productPage;
+    private ProductBrowsingPage productPage;
     private HeaderPage headerPage;
 
     @When("I click on Products link")
     public void i_click_on_products_link() {
-        productPage = new ProductPage(getDriver());
+        productPage = new ProductBrowsingPage(getDriver());
         headerPage = new HeaderPage(getDriver());
         headerPage.clickProductsLink();
     }
