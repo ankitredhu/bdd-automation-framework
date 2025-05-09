@@ -1,6 +1,7 @@
 package hooks;
 
 import java.util.Properties;
+
 import base.BaseTest;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -20,25 +21,34 @@ public class Hooks extends BaseTest {
 
     public static ExtentReports extent;
     public static ExtentTest test;
+    private static boolean isBrowserInitialized = false;
+
     Properties prop;
     RetryScenario retryScenario = new RetryScenario();
     org.apache.logging.log4j.Logger log = LoggerUtility.getLogger(Hooks.class);
 
     @Before(order = 1)
     public void setUp(Scenario scenario) {
-    	
-        
+
         prop = ConfigReader.initializeProperties();
-        String browser = prop.getProperty("browser");
-        initializeBrowser(browser);
+
+        // Only initialize browser if not already initialized
+        if (!isBrowserInitialized) {
+            String browser = prop.getProperty("browser");
+            initializeBrowser(browser);
+            isBrowserInitialized = true;
+            log.info("Browser initialized: " + browser);
+        } else {
+            log.info("Reusing existing browser session");
+        }
+
         log.info("Running scenario: " + scenario.getName());
-        log.info("Browser from config: " + browser);
 
         // Start Extent report
         extent = ExtentReportManager.getInstance();
         test = extent.createTest(scenario.getName());
     }
-    
+
     @Before(value = "@LoggedIn", order = 2)
     public void loginBeforeScenario() {
         log.info("Performing login as scenario is tagged with @LoggedIn");
@@ -47,7 +57,6 @@ public class Hooks extends BaseTest {
         HeaderPage headerPage = new HeaderPage(getDriver());
         String[][] data = ExcelReader.readExcelData("Sheet1");
 
-        // You can use first row (0 index) or parameterize later
         headerPage.clickSignupLoginLink();
         loginPage.enterLoginEmail(data[0][0]);
         loginPage.enterLoginPassword(data[0][1]);
@@ -55,13 +64,12 @@ public class Hooks extends BaseTest {
         log.info("Login completed");
     }
 
-
     @After
     public void tearDown(Scenario scenario) {
+
         if (scenario.isFailed()) {
             if (retryScenario.shouldRetry(scenario)) {
-            	log.error("Scenario failed: " + scenario.getName());
-                
+                log.error("Scenario failed: " + scenario.getName());
             }
             byte[] screenshot = Utilities.takeScreenshot(getDriver());
             scenario.attach(screenshot, "image/png", scenario.getName());
@@ -71,7 +79,15 @@ public class Hooks extends BaseTest {
             log.info("Scenario passed: " + scenario.getName());
         }
 
-        quitBrowser();
+        // Only quit browser if scenario has no @NoClose tag
+        if (!scenario.getSourceTagNames().contains("@NoClose")) {
+            quitBrowser();
+            isBrowserInitialized = false;
+            log.info("Browser closed after scenario.");
+        } else {
+            log.info("Keeping browser open for reuse (tag: @NoClose)");
+        }
+
         extent.flush();
     }
 }
