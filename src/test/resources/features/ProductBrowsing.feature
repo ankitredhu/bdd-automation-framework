@@ -13,7 +13,7 @@ Scenario Outline: Search for a product and add it to the cart
       |RowIndex |
       |0        |
       
-  
+  @NoClose
   Scenario: Verify all products and product detail page
     Given I am on the home page
     When I click on Products link
@@ -22,5 +22,14 @@ Scenario Outline: Search for a product and add it to the cart
     When I click on View Product of the first product
     Then I should be navigated to the product detail page
     And I should see product name, category, price, availability, condition, and brand
+    
+    
+   Scenario: Verify Subscription functionality in products page
+    Given I am on the products page
+    When I scroll to the subscription section
+    Then I should see the subscription section
+    When I enter email "testuser@example.com" for subscription
+    And I click on the subscription arrow button
+    Then I should see the success message for subscription
  
  

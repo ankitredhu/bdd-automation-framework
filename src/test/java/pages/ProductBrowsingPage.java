@@ -35,7 +35,6 @@ public class ProductBrowsingPage {
     private final By cartProductName = By.cssSelector(".cart_description h4 a");
     private final By deleteProductButton = By.cssSelector(".cart_quantity_delete");
     private final By allProductsHeading = By.xpath("//h2[text()='All Products']");
-    private final By allProductsName = By.tagName("p");
     private final By productsList = By.cssSelector(".features_items");
     private final By productDetailsPage = By.xpath("//div[@class='product-details']");
     
@@ -114,13 +113,6 @@ public class ProductBrowsingPage {
                 && action.isElementVisible(productCondition)
                 && action.isElementVisible(productBrand);
     }
-    
-//    public void listOfProducts() {
-//    	log.info("Verifying products on the page..");
-//    	List<WebElement> productsNameElements = action.findElements(allProductsName);
-//    	log.info(productsNameElements.size()+" products listed");
-//    	
-//    }
     
     public boolean isProductListVisible() {
         log.info("Checking if product list is visible");

@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -67,6 +68,11 @@ public class ActionHelper {
     
     public void waitForPresenceOfElementLocated(By locator) {
     	wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+    }
+
+    public void scrollToElement(By locator) {
+        WebElement element = driver.findElement(locator);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", element);
     }
     
     
