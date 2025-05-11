@@ -74,6 +74,7 @@ public class HeaderPage {
      
      public void clickVideoTutorials() {
     	 log.info("Clicking on Video Tutorials link");
+    	 action.scrollToElement(apiTestingButton);
       	action.click(videoTutorials);
      }
 
