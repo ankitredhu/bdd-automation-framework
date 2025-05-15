@@ -3,13 +3,20 @@ package stepdefinitions;
 import static org.junit.Assert.assertTrue;
 
 import base.BaseTest;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.ProductBrowsingPage;
 
 public class CartOperationsSteps extends BaseTest {
 
-    private ProductBrowsingPage productPage = new ProductBrowsingPage(getDriver());
+    private ProductBrowsingPage productPage;
+    
+    @Before
+    public void setUpPages() {
+    	productPage = new ProductBrowsingPage(getDriver());
+    	
+    }
 
     @When("I navigate to the cart")
     public void i_navigate_to_the_cart() {

@@ -37,6 +37,8 @@ public class ProductBrowsingPage {
     private final By allProductsHeading = By.xpath("//h2[text()='All Products']");
     private final By productsList = By.cssSelector(".features_items");
     private final By productDetailsPage = By.xpath("//div[@class='product-details']");
+    private final By quantityInput = By.id("quantity");
+ 
     
     // Product detail elements
     private final By productName = By.xpath("//div[@class='product-information']/h2");
@@ -59,6 +61,8 @@ public class ProductBrowsingPage {
         action.click(firstProductViewButton);
         action.click(nextPageAddToCartButton);
     }
+    
+    
 
     public String getProductAddedMessage() {
         log.info("Getting product added message");
@@ -123,6 +127,25 @@ public class ProductBrowsingPage {
     	log.info("Checking id product details page visible");
     	return action.isElementVisible(productDetailsPage);
     }
+    
+    public void firstProductDetailsPage() {
+    	log.info("Clicking to View Product...");
+    	action.click(firstProductViewButton);
+    	
+    }
+    
+    public void clickAddToCartOnDetailsPage() {
+    	log.info("Clicking add to cart on product details page..");
+    	action.click(nextPageAddToCartButton);
+    }
+    
+    public void setProductQuantity(String qty) {
+        log.info("Setting product quantity to: " + qty);
+        action.type(quantityInput, qty);
+    }
+    
+    
+   
     
     
 }

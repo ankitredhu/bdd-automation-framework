@@ -2,6 +2,7 @@ package stepdefinitions;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
@@ -15,12 +16,16 @@ public class ContactUsSteps extends BaseTest {
     private WebDriver driver;
     private ContactUsPage contactUsPage;
     private HeaderPage headerPage;
+    
+    @Before
+    public void setUpPages() {
+    	contactUsPage = new ContactUsPage(getDriver());
+    	headerPage = new HeaderPage(getDriver());
+    }
 
     @When("I click on Contact Us link")
     public void i_click_on_contact_us_link() {
         // Write code here that turns the phrase above into concrete actions
-    	contactUsPage = new ContactUsPage(getDriver());
-    	headerPage = new HeaderPage(getDriver());
     	headerPage.clickContactUs();
     }
 
