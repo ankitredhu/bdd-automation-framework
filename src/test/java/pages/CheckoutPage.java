@@ -24,6 +24,7 @@ public class CheckoutPage {
     private final By reviewOrderMessage = By.xpath("//h2[contains(text(),'Review Your Order')]");
     private final By commentInput = By.name("message");
     private final By placeOrderButton = By.xpath("//a[contains(text(),'Place Order')]");
+    private final By signupLoginButton = By.xpath("//u[normalize-space()='Register / Login']");
 
     public void clickProceedToCheckout() {
         log.info("Clicking 'Proceed To Checkout' button");
@@ -48,6 +49,10 @@ public class CheckoutPage {
     public void clickPlaceOrder() {
         log.info("Clicking 'Place Order' button");
         action.click(placeOrderButton);
+    }
+    
+    public void signupOnCheckout() {
+    	action.click(signupLoginButton);
     }
 
 }

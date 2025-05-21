@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import base.BaseTest;
 import io.cucumber.java.Before;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.ProductBrowsingPage;
@@ -39,4 +40,7 @@ public class CartOperationsSteps extends BaseTest {
     public void the_cart_should_be_empty() {
         assertTrue("Cart is not empty", productPage.isCartEmpty());
     }
+    
+    // Registering while checking out scenario 
+    
 }

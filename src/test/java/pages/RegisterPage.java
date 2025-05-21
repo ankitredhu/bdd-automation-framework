@@ -1,16 +1,20 @@
 package pages;
 
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.ActionHelper;
+import utils.LoggerUtility;
 
 public class RegisterPage extends ActionHelper {
 
     private WebDriver driver;
+    private Logger log = LoggerUtility.getLogger(RegisterPage.class);
 
     public RegisterPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
+        log.info("RegisterPage initialized");
     }
 
     // Locators
@@ -36,21 +40,33 @@ public class RegisterPage extends ActionHelper {
     // Actions
 
     public void enterNameAndEmail(String name, String email) {
+    	log.info("Entering name and email...");
+        type(nameInput, name);
+        type(emailInput, email);
+        click(signupButton);
+    }
+    
+    public void signupWithDynamicEmail(String name) {
+    	log.info("Signing up with dynamic email...");
+        String email = "user" + System.currentTimeMillis() + "@test.com";
         type(nameInput, name);
         type(emailInput, email);
         click(signupButton);
     }
     
     public void clearNameAndEmail() {
+    	log.info("Clearing email and name fields");
     	clear(nameInput);
     	clear(emailInput);
     }
     
     public boolean isUserAlreadyExistsErrorVisible() {
+    	log.info("Checking if user already exist...");
         return isElementVisible(emailAlreadyExistsError);
     }
 
     public void fillAccountDetails(String password, String day, String month, String year) {
+    	log.info("Filling accout details...");
         click(genderMale);
         type(passwordInput, password);
         selectByVisibleText(dayDropdown, day);
@@ -59,7 +75,8 @@ public class RegisterPage extends ActionHelper {
     }
 
     public void fillAddressDetails(String firstName, String lastName, String address, String state, String city, String zipcode, String mobile) {
-        type(firstNameInput, firstName);
+        log.info("Filling address details...");
+    	type(firstNameInput, firstName);
         type(lastNameInput, lastName);
         type(addressInput, address);
         type(stateInput, state);
@@ -69,12 +86,14 @@ public class RegisterPage extends ActionHelper {
     }
 
     public void clickCreateAccount() {
+    	log.info("Clicking create account button");
         click(createAccountButton);
     }
     
     
 
     public boolean isAccountCreated() {
+    	log.info("Checking if account successfully created...");
         return isElementVisible(accountCreatedMessage);
     }
 }

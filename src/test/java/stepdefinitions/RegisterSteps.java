@@ -52,4 +52,13 @@ public class RegisterSteps extends BaseTest {
 	public void i_should_see_that_the_user_is_successfully_registered_and_logged_in() {
 		assertTrue(registerPage.isAccountCreated());
 	}
+	
+	@When("I register a new user with with random data {string} with timestamp")
+	public void i_register_a_new_user_with_with_random_data_with_timestamp(String username) {
+		
+		registerPage.signupWithDynamicEmail(username);
+		registerPage.fillAccountDetails("Igrah@123", "24", "May", "2000");
+		registerPage.fillAddressDetails("Aanu", "Amor", "Sample1", "Sample2", "Sample3", "126102", "9824516780");
+		registerPage.clickCreateAccount();
+	}
 }
