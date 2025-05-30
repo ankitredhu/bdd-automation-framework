@@ -1,5 +1,7 @@
 package stepdefinitions;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Assert;
 
 import base.BaseTest;
@@ -103,5 +105,26 @@ public class ProductBrowsingSteps extends BaseTest {
     public void i_remove_the_products_from_cart_if_not_empty() {
     	headerPage.clickCartLink();
         cartPage.cleanCart();
+    }
+    
+  //Category scenario steps
+    
+    @When("I click on Women category and select Dress sub-category")
+    public void i_click_on_women_category_and_select_dress_sub_category() {
+    	productBrowsingPage.selectWomenDressCategory();
+    }
+    @Then("I should see products for Women > Dress category")
+    public void i_should_see_products_for_women_dress_category() {
+    	String title = productBrowsingPage.getCategoryTitle();
+        assertTrue(title.contains("WOMEN - DRESS"));
+    }
+    @When("I click on Men category and select Tshirts sub-category")
+    public void i_click_on_men_category_and_select_tshirts_sub_category() {
+    	productBrowsingPage.selectMenTshirtsCategory();
+    }
+    @Then("I should see products for Men > Tshirts category")
+    public void i_should_see_products_for_men_tshirts_category() {
+    	String title = productBrowsingPage.getCategoryTitle();
+        assertTrue(title.contains("MEN - TSHIRTS"));
     }
 }

@@ -41,6 +41,5 @@ public class CartOperationsSteps extends BaseTest {
         assertTrue("Cart is not empty", productPage.isCartEmpty());
     }
     
-    // Registering while checking out scenario 
     
 }

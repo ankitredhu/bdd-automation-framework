@@ -23,7 +23,7 @@ Scenario Outline: Search for a product and add it to the cart
     Then I should be navigated to the product detail page
     And I should see product name, category, price, availability, condition, and brand
     
-    
+   @NoClose
    Scenario: Verify Subscription functionality in products page
     Given I am on the products page
     When I scroll to the subscription section
@@ -31,5 +31,12 @@ Scenario Outline: Search for a product and add it to the cart
     When I enter email "testuser@example.com" for subscription
     And I click on the subscription arrow button
     Then I should see the success message for subscription
+
+  Scenario: View products by category
+    Given I am on the home page
+    When I click on Women category and select Dress sub-category
+    Then I should see products for Women > Dress category
+    When I click on Men category and select Tshirts sub-category
+    Then I should see products for Men > Tshirts category
  
  

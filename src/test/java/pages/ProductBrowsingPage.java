@@ -47,6 +47,14 @@ public class ProductBrowsingPage {
     private final By productAvailability = By.xpath("//b[normalize-space()='Availability:']/parent::p");
     private final By productCondition = By.xpath("//b[normalize-space()='Condition:']/parent::p");
     private final By productBrand = By.xpath("//b[normalize-space()='Brand:']/parent::p");
+    
+ // Category Locators
+    private final By womenCategory = By.xpath("//a[normalize-space()='Women']");
+    private final By womenDressSubCategory = By.xpath("//div[@id='Women']//a[contains(text(),'Dress')]");
+    private final By menCategory = By.xpath("//a[normalize-space()='Men']");
+    private final By menTshirtsSubCategory = By.xpath("//a[contains(text(),'Tshirts')]");
+    private final By categoryTitle = By.xpath("//h2[@class='title text-center']");
+
 
     // Actions
 
@@ -144,6 +152,25 @@ public class ProductBrowsingPage {
         action.type(quantityInput, qty);
     }
     
+    
+    //Category scenario
+    public void selectWomenDressCategory() {
+        log.info("Selecting Women > Dress category");
+        action.click(womenCategory);
+        action.click(womenDressSubCategory);
+    }
+
+    public void selectMenTshirtsCategory() {
+        log.info("Selecting Men > Tshirts category");
+        action.click(menCategory);
+        action.click(menTshirtsSubCategory);
+    }
+
+    public String getCategoryTitle() {
+        log.info("Getting category page title");
+        return action.getText(categoryTitle);
+    }
+
     
    
     

@@ -19,7 +19,7 @@ Feature: Checkout Process
     And I enter the card details from sheet "cardDetails"
     Then I should see the order confirmation message
 	
-	
+	@NoClose
   Scenario: Register during checkout and place order successfully
     Given I am on the home page
     When I click on the Cart link
@@ -34,4 +34,8 @@ Feature: Checkout Process
     And I click on Place Order
     And I enter the card details from sheet "cardDetails"
     Then I should see the order confirmation message
+    
+ 
+    
+    
     
